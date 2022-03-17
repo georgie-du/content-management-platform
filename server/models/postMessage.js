@@ -5,9 +5,9 @@ const postSchema = mongoose.Schema(
   {
     title: String,
     message: String,
-    creator: String,
+    author: String,
     tags: [String],
-    selectedFile: String,
+    fileSelected: String,
     likeCount: {
       type: Number,
       default: 0,
@@ -17,7 +17,7 @@ const postSchema = mongoose.Schema(
       dafault: new Date(),
     },
   },
-  { timestamps: true }
+  // { timestamps: true }
 );
 
 // compile model from schema
