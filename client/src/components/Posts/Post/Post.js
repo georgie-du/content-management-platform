@@ -6,7 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import moment from 'moment';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../../actions/posts";
+import { deleteBlog , likeBlog} from "../../../actions/posts";
 
 function Post({ post, setCurrentId }) {
   const dispatch = useDispatch();
@@ -23,21 +23,21 @@ function Post({ post, setCurrentId }) {
           <MoreHorizIcon fontSize='medium' />
         </Button>
       </div>
-      <div className={styles.details}>
-        <Typography variant='body2' color='textSecondary'>{post.tags.map((tag) => `#${tag} `)}</Typography>
-      </div>
-      <Typography className={styles.title} gutterBottom variant="h5" component="h2">{post.title}</Typography>
+      <Typography className={styles.title} gutterBottom variant="h5">{post.title}</Typography>
       <CardContent>
         <Typography paragraph color="textSecondary" >{post.message}</Typography>
       </CardContent>
+      <div className={styles.details}>
+        <Typography variant='body2' color='textSecondary'>{post.tags.map((tag) => `#${tag} `)}</Typography>
+      </div>
       <CardActions className={styles.cardActions}>
-        <Button size='small' color='primary' onClick={() => { }}>
+        <Button size='small' color='primary' onClick={() => { dispatch(likeBlog(post._id))}}>
           <ThumbUpAltIcon fontSize="small" />
           &nbsp; Like{' '}
           {post.likeCount}
         </Button>
 
-        <Button size='small' color='primary' onClick={() => { dispatch(deletePost(post._id)) }}>
+        <Button size='small' color='primary' onClick={() => { dispatch(deleteBlog(post._id)) }}>
           <DeleteIcon fontSize="small" />
           Delete
         </Button>

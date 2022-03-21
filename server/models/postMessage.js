@@ -17,7 +17,7 @@ const postSchema = mongoose.Schema(
       dafault: new Date(),
     },
   },
-  // { timestamps: true }
+  { timestamps: true }
 );
 
 // compile model from schema

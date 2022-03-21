@@ -1,11 +1,12 @@
 import express from "express";
-import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from 'dotenv';
 import postRoutes from "./routes/posts.js";
 
-// set up an express app
+// set up express app
 const app = express();
+dotenv.config();
 
 // middleware
 app.use(express.json({ limit: "30mb", extended: true }));
@@ -15,14 +16,12 @@ app.use(cors());
 // initialize routes
 app.use("/posts", postRoutes);
 
-const CONNECTION_URL =
-  "mongodb+srv://georgiana:georgiana123@cluster0.rfjaz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.port || 5000;
 
 //connect to database and listen to requests
 mongoose
-  .connect(CONNECTION_URL)
+  .connect(process.env.CONNECTION_URL)
   .then(() =>
     app.listen(PORT, () => console.log(`Listening for requests on port: ${PORT}`))
   )
-  .catch((error) => console.log('Error',error.message));
+  .catch((error) => console.log('Error', error.message));

@@ -1,7 +1,7 @@
 import React from 'react'
 import Form from '../components/Form/Form'
 
-function CreatePost() {
+function CreateBlog() {
   return (
     <div>
 
@@ -11,4 +11,4 @@ function CreatePost() {
   )
 }
 
-export default CreatePost;
+export default CreateBlog;

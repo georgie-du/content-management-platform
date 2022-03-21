@@ -1,17 +1,16 @@
-// import { FETCH_ALL, CREATE } from '../constants/actionTypes';
+import { FETCH_POSTS, CREATE, UPDATE, DELETE } from '../constants/actionTypes'
 
-export default (posts = [], action) => {
+export default (blogs = [], action) => {
   switch (action.type) {
-    case "FETCH_POSTS":
+    case FETCH_POSTS:
       return action.payload;
-    case "CREATE":
-      return [...posts, action.payload];
-    case "UPDATE":
-      return posts.map((post) => post._id === action.payload._id ? action.payload : post);
-    case "DELETE":
-      return posts.filter((post) => post._id !== action.payload)
-
+    case CREATE:
+      return [...blogs, action.payload];
+    case UPDATE:
+      return blogs.map((blog) => blog._id === action.payload._id ? action.payload : blog);
+    case DELETE:
+      return blogs.filter((blog) => blog._id !== action.payload)
     default:
-      return posts;
+      return blogs;
   }
 };
