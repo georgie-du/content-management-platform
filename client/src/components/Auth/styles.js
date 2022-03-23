@@ -6,6 +6,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    justifyContent: 'center',
     padding: theme.spacing(2),
   },
   root: {
@@ -15,16 +16,18 @@ export default makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#63e4be",
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
+    textAlign: 'center',
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    backgroundColor: "#764ed8",
   },
   googleButton: {
-    marginBottom: theme.spacing(2),
+    margin: theme.spacing(3, 1, 2),
   },
 }));
