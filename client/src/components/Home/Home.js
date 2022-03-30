@@ -33,9 +33,9 @@ function Home() {
           {' '}
           <Posts setCurrentId={setCurrentId} />
         </Container>
-      ) : (<Container maxWidth="lg">
+      ) : (<Container >
         <Posts setCurrentId={setCurrentId} />
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={12} >
           <Form currentId={currentId} setCurrentId={setCurrentId} />
         </Grid>
       </Container>)
