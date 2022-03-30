@@ -4,7 +4,7 @@ export default makeStyles({
   media: {
     height: 0,
     paddingTop: '56.25%',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
     backgroundBlendMode: 'darken',
   },
   border: {
@@ -23,15 +23,29 @@ export default makeStyles({
   },
   overlay: {
     position: 'absolute',
-    top: '20px',
+    top: '10px',
     left: '20px',
     color: 'white',
   },
   overlay2: {
+    cursor: 'pointer',
     position: 'absolute',
-    top: '20px',
-    right: '20px',
-    color: 'white',
+    right: '5px',
+    color: '#fff'
+  },
+  openBtn: {
+    // position: 'absolute',
+    top: '15px',
+    // fontSize: '15px'
+  },
+  editBtn: {
+    // position: 'absolute',
+    top: '70px'
+  },
+  deleteBtn: {
+    // position: 'absolute',
+    top: '120px',
+ 
   },
   grid: {
     display: 'flex',

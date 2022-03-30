@@ -4,16 +4,22 @@ import { deepPurple } from '@material-ui/core/colors';
 export default makeStyles((theme) => ({
   appBar: {
     borderRadius: 15,
-    margin: '30px 0',
+    margin: '10px 0',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '10px 50px',
+    padding: '3px 50px',
   },
-  heading: {
-    color: 'rgba(0,183,255, 1)',
+  header: {
+    color: '#63e4be',
     textDecoration: 'none',
+    fontFamily: "Quicksand",
+    fontWeight: "bold",
+    fontSize: '37px'
+  },
+  headerSpan: {
+    color: '#92f8b4',
   },
   image: {
     marginLeft: '15px',
@@ -27,14 +33,25 @@ export default makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     width: '400px',
+    justifyContent: 'space-evenly'
   },
   userName: {
     display: 'flex',
     alignItems: 'center',
+    color: '#666'
   },
   logoContainer: {
     display: 'flex',
     alignItems: 'center',
+  },
+  logout: {
+    backgroundColor: '#63e4be',
+    color: '#fff'
+  },
+  navLinks: {
+    color: '#63e4be',
+    fontSize: '16px' ,
+    margin: '0 5px'
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
