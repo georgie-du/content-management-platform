@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 
+const Schema = mongoose.Schema;
 //define schema
-const postSchema = mongoose.Schema(
+const postSchema = new Schema(
   {
     title: String,
     message: String,

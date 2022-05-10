@@ -61,7 +61,7 @@ function Post({ post, setCurrentId }) {
       )}
       <Typography className={styles.title} gutterBottom variant="h6">{post.title}</Typography>
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">{post.message.split(' ').splice(0, 10).join(' ')}...</Typography>
+        <Typography variant="body2" className={styles.snippet} color="textSecondary" component="p">{post.message.split(' ').slice(0, 20).join(' ')}...</Typography>
       </CardContent>
 
       <CardActions className={styles.cardActions}>

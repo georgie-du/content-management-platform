@@ -9,7 +9,7 @@ export async function getBlogs(req, res) {
   try {
     const postMessages = await PostMessage.find().sort({ createdAt: -1 });
 
-    console.log(postMessages);
+    // console.log(postMessages);
 
     res.status(200).json(postMessages);
   } catch (err) {
@@ -20,7 +20,7 @@ export async function getBlogs(req, res) {
 // add a new post to the db 
 export async function createBlog(req, res) {
   const post = req.body;
-  const newBlog = new PostMessage({ ...post, author: req.userId, createdAT: new Date().toISOString() });
+  const newBlog = new PostMessage({ ...post, author: req.userId, createdAt: new Date().toISOString() });
   console.log(newBlog)
 
   try {

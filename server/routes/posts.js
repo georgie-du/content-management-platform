@@ -3,6 +3,7 @@ import { getBlogs, createBlog, deleteBlog, updateBlog, likeBlog } from "../contr
 import auth from '../middleware/auth.js';
 const router = express.Router();
 
+// route handlers
 router.get("/", getBlogs);
 router.post("/", auth, createBlog);
 router.patch("/:id", auth, updateBlog);

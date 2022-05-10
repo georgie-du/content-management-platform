@@ -1,47 +1,56 @@
 import React from "react";
-import { Container, Grid } from "@material-ui/core";
-import { Typography, Box } from '@material-ui/core';
+import { Container, Grid, Typography, Box, Paper, AppBar, TextField, Button } from "@material-ui/core";
+import { useNavigate, useLocation } from "react-router-dom";
 import { getBlogs } from '../../actions/posts';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import PagesBar from "../Pagination/Pagination";
 
 
+const useQuery = () => new URLSearchParams(useLocation().search);
 
 function Home() {
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('profile'));
-
+  const query = useQuery();
+  const navigate = useNavigate();
+  const page = query.get('page') || 1;
+  const searchQuery = query.get('searchQuery');
 
   useEffect(() => {
     dispatch(getBlogs());
-  }, [dispatch]);
+  }, [dispatch, currentId]);
 
   return (
     <>
-    {(!user?.result?.name) ?
-      (
-        <Container >
-          <Typography variant='h6' >
+      {(!user?.result?.name) ?
+        (
+          <Container maxWidth='xl' >
+            <Typography variant='h6' >
 
-            <Box sx={{ fontFamily: 'Monospace', m:2 }}>
-              Please Login to create blogs and like other people's blogs.
-            </Box>
-          </Typography>
-          {' '}
+              <Box sx={{ fontFamily: 'Monospace', m: 2 }}>
+                Please Login to create blogs and like other people's blogs.
+              </Box>
+            </Typography>
+            {' '}
+            <Posts setCurrentId={setCurrentId} />
+            <PagesBar />
+          </Container>
+        ) : (<Container maxWidth='xl'>
           <Posts setCurrentId={setCurrentId} />
-        </Container>
-      ) : (<Container >
-        <Posts setCurrentId={setCurrentId} />
-        <Grid item xs={12} sm={12} >
-          <Form currentId={currentId} setCurrentId={setCurrentId} />
-        </Grid>
-      </Container>)
-    }
+          <Grid item xs={12} sm={12} >
+            <Form currentId={currentId} setCurrentId={setCurrentId} />
+            <Paper elevation={6}>
+              <PagesBar />
+            </Paper>
+          </Grid>
+        </Container>)
+      }
 
-  </>
+    </>
   )
 }
 

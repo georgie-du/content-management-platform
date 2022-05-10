@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 
 const secret = 'test';
 
+// authentication check middleware for protected routes
 const auth = async (req, res, next) => {
   try {
     // console.log(req.headers);

@@ -50,7 +50,7 @@ function Auth() {
       console.log(err)
     }
   };
-  const googleFailure = (err) => { console.log('Google login failed. Try again!', err) };
+  const googleFailure = (err) => { alert('Google login failed. Please try again!', err) };
 
   return (
     <React.Fragment>

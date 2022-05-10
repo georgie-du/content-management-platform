@@ -21,6 +21,9 @@ export default makeStyles({
     height: '100%',
     position: 'relative',
   },
+  snippet: {
+    height: '90px'
+  },
   overlay: {
     position: 'absolute',
     top: '10px',
@@ -45,7 +48,7 @@ export default makeStyles({
   deleteBtn: {
     // position: 'absolute',
     top: '120px',
- 
+
   },
   grid: {
     display: 'flex',

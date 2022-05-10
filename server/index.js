@@ -11,8 +11,15 @@ dotenv.config();
 
 // middleware
 app.use(express.json({ limit: "30mb", extended: true }));
-app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.urlencoded({ limit: "30mb", extended: true })); // for accepting req.body
 app.use(cors());
+
+app.use((req,res,next)=> {
+  console.log('___________new request made__________')
+  console.log('path: ', req.path)
+  console.log('method: ', req.method)
+  next();
+})
 
 // initialize routes
 app.use("/posts", postRoutes);
