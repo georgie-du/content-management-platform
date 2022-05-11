@@ -1,9 +1,10 @@
 import express from "express";
-import { getBlogs, createBlog, deleteBlog, updateBlog, likeBlog } from "../controllers/posts.js";
+import { getBlogs, getBlogsBySearch, createBlog, deleteBlog, updateBlog, likeBlog } from "../controllers/posts.js";
 import auth from '../middleware/auth.js';
 const router = express.Router();
 
 // route handlers
+router.get("/search", getBlogsBySearch);
 router.get("/", getBlogs);
 router.post("/", auth, createBlog);
 router.patch("/:id", auth, updateBlog);

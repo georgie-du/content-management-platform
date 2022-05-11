@@ -1,5 +1,6 @@
 
-export const FETCH_POSTS = 'FETCH_ALL';
+export const FETCH_POSTS = 'FETCH_POSTS';
+export const FETCH__FROM_SEARCH = 'FETCH__FROM_SEARCH';
 export const CREATE = 'CREATE';
 export const UPDATE = 'UPDATE';
 export const DELETE = 'DELETE';

@@ -17,6 +17,18 @@ export async function getBlogs(req, res) {
   }
 };
 
+// get list of search results
+export async function getBlogsBySearch(req, res) {
+  const { searchQuery, tags } = req.query;
+  try {
+    const title = new RegExp(searchQuery, 'i'); // ignore case 
+    const blogs = await PostMessage.find({ $or: [{ title }, { tags: { $in: tags.split(',') } }] });
+    res.json({ data: blogs });
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+}
+
 // add a new post to the db 
 export async function createBlog(req, res) {
   const post = req.body;
@@ -64,7 +76,7 @@ export async function likeBlog(req, res) {
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`Blog with id ${id} not found!`);
 
   const post = await PostMessage.findById(id);
-// check if user already liked post
+  // check if user already liked post
   const index = post.likes.findIndex((id) => id === String(req.userId));
 
   if (index === -1) {
