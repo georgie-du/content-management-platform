@@ -6,16 +6,29 @@ const router = express.Router();
 
 // get list of posts
 export async function getBlogs(req, res) {
+  const { page } = req.query;
   try {
-    const postMessages = await PostMessage.find().sort({ createdAt: -1 });
+    const postsLimit = 8;
+    const startIndex = (Number(page) - 1) * postsLimit; // starting index of each page 
+    const postsTotal = await PostMessage.countDocuments({});
 
-    // console.log(postMessages);
+    const posts = await PostMessage.find().sort({ createdAt: -1 }).limit(postsLimit).skip(startIndex);
 
-    res.status(200).json(postMessages);
+    res.status(200).json({ data: posts, currentPage: Number(page), totalPages: Math.ceil(postsTotal / postsLimit) });
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };
+
+export async function getBlog(req,res){
+  const {id} = req.params;
+  try {
+    const post = await PostMessage.findById(id)
+    res.status(200).json(post)
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+}
 
 // get list of search results
 export async function getBlogsBySearch(req, res) {

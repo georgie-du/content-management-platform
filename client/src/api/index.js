@@ -11,7 +11,8 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchPosts = () => API.get('/posts');
+export const fetchPosts = (page) => API.get(`/posts?page=${page}`);
+export const fetchPost = (id) => API.get(`/posts/${id}`);
 export const createBlog = (newBlog) => API.post('/posts', newBlog);
 export const updateBlog = (id, updatedBlog) => API.patch(`/posts/${id}`, updatedBlog);
 export const deleteBlog = (id) => API.delete(`/posts/${id}`);

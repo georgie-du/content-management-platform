@@ -72,7 +72,7 @@ function Auth() {
               <InputField name='password' label='Password' handleChange={handleChange} type={seePassword ? 'text' : 'password'} handleSeePassword={handleSeePassword} />
               {isRegister && <InputField name='confirmPassword' label='Confirm Password' type='password' handleChange={handleChange} />}
             </Grid>
-            <Grid container justifyContent='center'>
+            <Grid container style={{justifyContent:"center"}}>
               <Button type='submit' variant='contained' color='primary' className={styles.submit}>
                 {isRegister ? 'Register' : 'Log In'}
               </Button>
@@ -88,7 +88,7 @@ function Auth() {
                 cookiePolicy='single_host_origin'
               />
             </Grid>
-            <Grid container justifyContent='flex-end'>
+            <Grid container style={{justifyContent:'flex-end'}} >
               <Grid item>
                 <Button onClick={switchMode}>{isRegister ? 'Have an account? Log in' : "No  account? Register"}</Button>
               </Grid>

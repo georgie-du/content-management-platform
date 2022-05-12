@@ -4,13 +4,17 @@ export default makeStyles((theme) => ({
   appBarSearch: {
     borderRadius: 4,
     marginBottom: '1rem',
+    marginTop: '2rem',
     display: 'flex',
     padding: '16px',
   },
   pagination: {
-    borderRadius: 4,
+    borderRadius: 15,
     marginTop: '1rem',
     padding: '16px',
+    borderColor: '#fff',
+    display: 'flex',
+    justifyContent: 'center',
   },
   gridContainer: {
     [theme.breakpoints.down('xs')]: {

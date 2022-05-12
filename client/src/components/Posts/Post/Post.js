@@ -1,6 +1,6 @@
 import React from "react";
 import useStyles from "./styles";
-import { Card, CardContent, CardActions, CardMedia, Button, Typography } from '@material-ui/core';
+import { Card, CardContent, CardActions, CardMedia, Button, Typography, ButtonBase, Box } from '@material-ui/core';
 import KeyboardArrowRightOutlinedIcon from '@material-ui/icons/KeyboardArrowRightOutlined';
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
@@ -39,17 +39,16 @@ function Post({ post, setCurrentId }) {
 
   return (
     <Card className={styles.card} raised elevation={3}>
-      <div className={styles.cardAction} onClick={() => openBlog(post._id)} ></div>
-      <CardMedia className={styles.media} image={post.fileSelected || 'https://picsum.photos/200'} title={post.title} />
-      <div className={styles.overlay}>
+      <Box className={styles.pointer} onClick={() => openBlog(post._id)} >
+        <CardMedia className={styles.media} image={post.fileSelected || 'https://picsum.photos/200'} title={post.title} />
+      </Box>
+      <Box className={styles.overlay}>
         <Typography variant='h6'>{post.name}</Typography>
         <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
-      </div>
+      </Box>
+
       {(user?.result?.googleId === post?.author || user?.result?._id === post?.author) && (
-        <div className={styles.overlay2} >
-          <Button size='small' className={`${styles.openBtn} ${styles.overlay2}`} onClick={() => { }}>
-            <KeyboardArrowRightOutlinedIcon fontSize="medium" />
-          </Button>
+        <Box className={styles.overlay2} >
           <Button size='small' className={`${styles.editBtn} ${styles.overlay2}`} name="edit" onClick={handleUpdate}>
             <BorderColorOutlinedIcon fontSize="small"></BorderColorOutlinedIcon>
           </Button>
@@ -57,27 +56,20 @@ function Post({ post, setCurrentId }) {
             <DeleteOutlineOutlinedIcon fontSize="small" />
           </Button>
 
-        </div>
+        </Box>
       )}
-      <Typography className={styles.title} gutterBottom variant="h6">{post.title}</Typography>
-      <CardContent>
-        <Typography variant="body2" className={styles.snippet} color="textSecondary" component="p">{post.message.split(' ').slice(0, 20).join(' ')}...</Typography>
-      </CardContent>
+
+      <Box className={styles.pointer} onClick={() => openBlog(post._id)}>
+        <Typography className={styles.title} gutterBottom variant="h6">{post.title}</Typography>
+        <CardContent>
+          <Typography variant="body2" className={styles.snippet} color="textSecondary" component="p">{post.message.split(' ').slice(0, 20).join(' ')}...</Typography>
+        </CardContent>
+      </Box>
 
       <CardActions className={styles.cardActions}>
         <Button size='small' color='default' disabled={!user?.result} onClick={() => dispatch(likeBlog(post._id))}>
           <Likes />
         </Button>
-        {(user?.result?.googleId === post?.author || user?.result?._id === post?.author) && (
-          <>
-            {/* <Button size='small' className={styles.overlay2} name="edit" color='default' onClick={handleUpdate}>
-              <BorderColorOutlinedIcon fontSize="small"></BorderColorOutlinedIcon>
-            </Button> */}
-            {/* <Button size='small' color='default' onClick={() => { dispatch(deleteBlog(post._id)) }}>
-              <DeleteOutlineOutlinedIcon fontSize="small" />
-            </Button> */}
-          </>
-        )}
       </CardActions>
     </Card>
   )

@@ -16,7 +16,7 @@ function Form({ currentId, setCurrentId }) {
 	})
 	const styles = useStyles();
 	const dispatch = useDispatch();
-	const post = useSelector((state) => currentId ? state.posts.find((post) => post._id === currentId) : null);
+	const post = useSelector((state) => currentId ? state.posts.posts.find((post) => post._id === currentId) : null);
 	const user = JSON.parse(localStorage.getItem('profile'));
 
 	useEffect(() => {
@@ -49,11 +49,11 @@ function Form({ currentId, setCurrentId }) {
 	return (
 		<>
 			{/* <Container maxWidth="lg" className={styles.formContainer} justifyContent='center'> */}
-			<Paper className={styles.paper} justifyContent='center' >
+			<Paper className={styles.paper} style={{justifyContent:"center"}} >
 				<form autoComplete='off' className={styles.form} onSubmit={handleSubmit} >
 					<Typography className={styles.createBlog} variant="h6" margin="normal" >{currentId ? 'Edit' : 'Create'} a blog post</Typography>
 					<TextField name="title" required margin="dense" label="Title" variant="standard" fullWidth value={postData.title} onChange={handleTextField} />
-					<TextField name="message" multiline='true' margin="dense" rows='5' required label="Message" variant="standard" fullWidth value={postData.message} onChange={handleTextField} />
+					<TextField name="message" multiline margin="dense" rows='5' required label="Message" variant="standard" fullWidth value={postData.message} onChange={handleTextField} />
 					<TextField name="tags" required label="Tags" margin="dense" variant="standard" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
 					<div className={styles.fileInput}>
 						<FileBase type="file" multiple={false} value={postData.fileSelected} onDone={({ base64 }) => setPostData({ ...postData, fileSelected: base64 })} />
