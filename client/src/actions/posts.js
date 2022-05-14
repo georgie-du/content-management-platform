@@ -1,5 +1,5 @@
 import * as api from "../api";
-import { FETCH_POSTS, FETCH_POST, FETCH__FROM_SEARCH, CREATE, UPDATE, DELETE, START_SPINNER, STOP_SPINNER } from '../constants/actionTypes'
+import { FETCH_POSTS, FETCH_POST, FETCH__FROM_SEARCH, CREATE, UPDATE, DELETE, START_SPINNER, STOP_SPINNER, COMMENT } from '../constants/actionTypes'
 
 // action creators
 
@@ -41,10 +41,11 @@ export const getBlogsBySearch = (searchQuery) => async (dispatch) => {
   }
 }
 
-export const createBlog = (post) => async (dispatch) => {
+export const createBlog = (post, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_SPINNER });
     const { data } = await api.createBlog(post);
+    navigate(`/posts/$data._id`)
     dispatch({ type: CREATE, payload: data });
     dispatch({ type: STOP_SPINNER });
   } catch (error) {
@@ -75,6 +76,17 @@ export const likeBlog = (id) => async (dispatch) => {
   try {
     const { data } = await api.likeBlog(id);
     dispatch({ type: UPDATE, payload: data })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const postComment = (value, id) => async (dispatch) => {
+  try {
+    const { data } = await api.comment(value, id);
+    console.log(data)
+    dispatch({ type: COMMENT, payload: data })
+    return data.comments;
   } catch (error) {
     console.log(error)
   }

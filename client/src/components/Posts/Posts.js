@@ -12,9 +12,9 @@ function Posts({ setCurrentId }) {
 
   return (
     isLoading ? <LinearProgress /> : (
-      <Grid className={styles.mainContainer} container alignItems="stretch" spacing={3}>
+      <Grid className={styles.mainContainer} container >
         {posts.map((post) => (
-          <Grid key={post._id} item xs={12} sm={12} md={4} lg={3}>
+          <Grid key={post._id} item xs={12} sm={12} md={12} lg={12}>
             <Post post={post} setCurrentId={setCurrentId} />
           </Grid>
         ))}

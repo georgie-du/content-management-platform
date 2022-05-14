@@ -10,5 +10,6 @@ export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 export const START_SPINNER = 'START_SPINNER';
 export const STOP_SPINNER = 'STOP_SPINNER';
+export const COMMENT = 'COMMENT';
 
 

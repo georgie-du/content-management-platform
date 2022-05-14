@@ -4,6 +4,7 @@ import { TextField, Button, Typography, Paper, ButtonGroup } from '@material-ui/
 import FileBase from 'react-file-base64';
 import { useDispatch, useSelector } from 'react-redux';
 import { createBlog, updateBlog } from '../../actions/posts';
+import {useNavigate} from 'react-router-dom'
 
 
 
@@ -14,6 +15,7 @@ function Form({ currentId, setCurrentId }) {
 		tags: '',
 		fileSelected: ''
 	})
+	const navigate = useNavigate();
 	const styles = useStyles();
 	const dispatch = useDispatch();
 	const post = useSelector((state) => currentId ? state.posts.posts.find((post) => post._id === currentId) : null);
@@ -36,8 +38,9 @@ function Form({ currentId, setCurrentId }) {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		
 		if (currentId) {
-			dispatch(updateBlog(currentId, { ...postData, name: user?.result?.name }))
+			dispatch(updateBlog(currentId, { ...postData, name: user?.result?.name },navigate))
 		}
 		else {
 			dispatch(createBlog({ ...postData, name: user?.result?.name }));

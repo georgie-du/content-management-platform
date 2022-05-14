@@ -1,11 +1,11 @@
 import React from "react";
-import { Container, Grid, Typography, Box, Paper, AppBar, TextField, Grow, Button } from "@material-ui/core";
+import { Container, Grid, Typography, Box, AppBar, TextField, Grow, Button } from "@material-ui/core";
 import { useNavigate, useLocation } from "react-router-dom";
-import { getBlogs, getBlogsBySearch } from '../../actions/posts';
+import { getBlogsBySearch } from '../../actions/posts';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Pagination from "../Pagination/Pagination";
 import ChipInput from 'material-ui-chip-input'
 import useStyles from './styles';
@@ -50,60 +50,59 @@ function Home() {
   return (
     <>
       <Grow in>
-        <Container maxWidth='xl' >
-        {(!user?.result?.name) ?
-          (
-            <>
-              <Typography variant='h6' >
-                <Box sx={{ fontFamily: 'Monospace', m: 2 }}>
-                  Please Login to create blogs and like other people's blogs.
-                </Box>
-              </Typography>
-              {/* {' '} */}
-              <Grid container style={{ justifyContent: "space-between" }} alignItems="stretch" spacing={3} className={styles.gridContainer}>
-                <Grid item xs={12} sm={6} md={9}>
-                  <Posts setCurrentId={setCurrentId} />
+        <Container maxWidth='lg' >
+          {(!user?.result?.name) ?
+            (
+              <>
+                <Typography variant='h6' >
+                  <Box sx={{ fontFamily: 'Monospace', m: 2 }}>
+                    Please Login to create blogs and like other people's blogs.
+                  </Box>
+                </Typography>
+                <Grid container style={{ justifyContent: "space-between" }} alignItems="stretch" spacing={3} className={styles.gridContainer}>
+                  <Grid item xs={12} sm={12} md={8}>
+                    <Posts setCurrentId={setCurrentId} />
+                  </Grid>
+                  <Grid item xs={12} sm={12} md={4}>
+                    <AppBar className={styles.appBarSearch} position="static" color="inherit">
+                      <TextField name="search" label="Search Title" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={handleKeyPress} />
+                      <ChipInput style={{ margin: '10px 0' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />
+                      <Button onClick={searchBlogPost} className={styles.searchButton} variant="contained" color="default">Search</Button>
+                    </AppBar>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
-                  <AppBar className={styles.appBarSearch} position="static" color="inherit">
-                    <TextField name="search" label="Search Title" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={handleKeyPress} />
-                    <ChipInput style={{ margin: '10px 0' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />
-                    <Button onClick={searchBlogPost} className={styles.searchButton} variant="contained" color="default">Search</Button>
-                  </AppBar>
+                {(!searchQuery && !tags.length) && (
+                  <Box className={styles.pagination}>
+                    <Pagination page={page} />
+                  </Box>
+                )}
+                {/* </Container> */}
+              </>
+            ) : (
+              // <Container maxWidth='xl'>
+              <>
+                <Grid container className={styles.gridContainer}>
+                  <Grid item xs={12} sm={6} md={7} >
+                    <Posts setCurrentId={setCurrentId} />
+                  </Grid>
+                  <Grid item xs={12} sm={6} md={4} >
+                    <AppBar className={styles.appBarSearch} position="sticky" color="inherit">
+                      <TextField name="search" label="Search Title" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={handleKeyPress} />
+                      <ChipInput style={{ margin: '10px 0' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />
+                      <Button onClick={searchBlogPost} className={styles.searchButton} variant="contained" color="default">Search</Button>
+                    </AppBar>
+                    <Form currentId={currentId} setCurrentId={setCurrentId} />
+                  </Grid>
                 </Grid>
-              </Grid>
-              {(!searchQuery && !tags.length) && (
-                <Box className={styles.pagination}>
-                  <Pagination page={page} />
-                </Box>
-              )}
-            {/* </Container> */}
-            </>
-          ) : (
-          // <Container maxWidth='xl'>
-          <>
-            <Grid container style={{ justifyContent: "space-between" }} alignItems="stretch" spacing={3} className={styles.gridContainer}>
-              <Grid item xs={12} sm={6} md={9}>
-                <Posts setCurrentId={setCurrentId} />
-              </Grid>
-              <Grid item xs={12} sm={6} md={3}>
-                <AppBar className={styles.appBarSearch} position="static" color="inherit">
-                  <TextField name="search" label="Search Title" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={handleKeyPress} />
-                  <ChipInput style={{ margin: '10px 0' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />
-                  <Button onClick={searchBlogPost} className={styles.searchButton} variant="contained" color="default">Search</Button>
-                </AppBar>
-                <Form currentId={currentId} setCurrentId={setCurrentId} />
-              </Grid>
-            </Grid>
-            {(!searchQuery && !tags.length) && (
-              <Box className={styles.pagination}>
-                <Pagination page={page} />
-              </Box>
-            )}
-          </>
-          )
-        }
-         </Container>
+                {(!searchQuery && !tags.length) && (
+                  <Box className={styles.pagination}>
+                    <Pagination page={page} />
+                  </Box>
+                )}
+              </>
+            )
+          }
+        </Container>
       </Grow>
     </>
   )

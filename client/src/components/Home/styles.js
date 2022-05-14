@@ -17,7 +17,8 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
   },
   gridContainer: {
-    [theme.breakpoints.down('xs')]: {
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
       flexDirection: 'column-reverse',
     },
   },

@@ -1,6 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
+  outerContainer: {
+    display: 'flex',
+  },
+  container: {
+  },
   media: {
     borderRadius: '20px',
     objectFit: 'cover',
@@ -19,7 +24,8 @@ export default makeStyles((theme) => ({
   section: {
     borderRadius: '20px',
     margin: '10px',
-    flex: 1,
+    // flex: 1,
+    width: '100%'
   },
   imageSection: {
     marginLeft: '20px',
@@ -27,13 +33,32 @@ export default makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
-  recommendedPosts: {
+  recommendedBlogs: {
     display: 'flex',
+    flexDirection: 'column',
+
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
+      width: '20%',
     },
+  },
+  recommendedBlogsImg:{
+    borderRadius: '20px',
+    width: "100%",  
+    height: "100px",
+    objectFit: 'cover'
   },
   loadingPaper: {
     display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '15px', height: '39vh',
+  },
+  commentsOuterContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  commentsInnerContainer: {
+    height: '200px',
+    overflowY: 'auto',
+    marginRight: '30px',
+    width: '40%'
   },
 }));

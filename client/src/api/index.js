@@ -17,6 +17,7 @@ export const createBlog = (newBlog) => API.post('/posts', newBlog);
 export const updateBlog = (id, updatedBlog) => API.patch(`/posts/${id}`, updatedBlog);
 export const deleteBlog = (id) => API.delete(`/posts/${id}`);
 export const likeBlog = (id) => API.patch(`/posts/${id}/likeBlog`);
+export const comment = (value, id) => API.post(`/posts/${id}/postComment`, { value });
 export const fetchBlogsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 
 export const login = (formInfo) => API.post('/user/login', formInfo);

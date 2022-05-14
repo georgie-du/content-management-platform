@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_POST, FETCH__FROM_SEARCH, CREATE, UPDATE, DELETE, START_SPINNER, STOP_SPINNER } from '../constants/actionTypes'
+import { FETCH_POSTS, FETCH_POST, FETCH__FROM_SEARCH, CREATE, UPDATE, DELETE, START_SPINNER, STOP_SPINNER, COMMENT } from '../constants/actionTypes'
 
 export default (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
@@ -23,6 +23,14 @@ export default (state = { isLoading: true, posts: [] }, action) => {
       return { ...state, posts: state.posts.map((post) => (post._id === action.payload._id ? action.payload : post)) };
     case DELETE:
       return { ...state, posts: state.posts.filter((post) => post._id !== action.payload) };
+      case COMMENT:
+        return {...state, posts:state.posts.map((post) => {
+          // change post that received a comment 
+          if(post._id === action.payload._id) {
+            return action.payload;
+          }// return the other posts 
+          return post;
+        })}
     default:
       return state;
   }

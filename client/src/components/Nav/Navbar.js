@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AppBar, Avatar, Button, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Avatar, Button, Toolbar, Typography,Container } from "@material-ui/core";
 import useStyles from './styles'
 import { useDispatch } from "react-redux";
 import decode from 'jwt-decode';
@@ -34,27 +34,29 @@ function Navbar() {
   }
 
   return (
-    <AppBar className={styles.appBar} position="static" color="inherit">
-      <div className={styles.logoContainer}>
-        <Typography className={styles.header} component={Link} to="/" color="primary" variant="h4" align="center">
-          i<span className={styles.headerSpan}>B</span>log
-        </Typography>
-      </div>
-      <Toolbar className={styles.toolbar}>
-        {user ? (
-          <div className={styles.profile}>
-            <Avatar className={styles.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
-            <Typography className={styles.userName} variant="h6" >{user.result.name}</Typography>
-            <Button variant="contained" className={styles.logout} onClick={logout} >Logout</Button>
-          </div>
-        ) : (
-          <>
-            <Button component={Link} to="/" variant="text" className={styles.navLinks}>Blogs</Button>
-            <Button component={Link} to="/auth" variant="text" className={styles.navLinks}>Log in</Button>
-          </>
-        )}
-      </Toolbar>
-    </AppBar>
+    <Container maxWidth='lg' >
+      <AppBar className={styles.appBar} position="static" color="inherit">
+        <div className={styles.logoContainer}>
+          <Typography className={styles.header} component={Link} to="/" color="primary" variant="h4" align="center">
+            i<span className={styles.headerSpan}>B</span>log
+          </Typography>
+        </div>
+        <Toolbar className={styles.toolbar}>
+          {user ? (
+            <div className={styles.profile}>
+              <Avatar className={styles.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)}</Avatar>
+              <Typography className={styles.userName} variant="h6" >{user.result.name}</Typography>
+              <Button variant="contained" className={styles.logout} onClick={logout} >Logout</Button>
+            </div>
+          ) : (
+            <>
+              <Button component={Link} to="/" variant="text" className={styles.navLinks}>Blogs</Button>
+              <Button component={Link} to="/auth" variant="text" className={styles.navLinks}>Log in</Button>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+    </Container>
   )
 }
 

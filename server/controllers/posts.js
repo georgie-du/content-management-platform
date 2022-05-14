@@ -20,8 +20,8 @@ export async function getBlogs(req, res) {
   }
 };
 
-export async function getBlog(req,res){
-  const {id} = req.params;
+export async function getBlog(req, res) {
+  const { id } = req.params;
   try {
     const post = await PostMessage.findById(id)
     res.status(200).json(post)
@@ -101,6 +101,16 @@ export async function likeBlog(req, res) {
   }
   const updatedBlog = await PostMessage.findByIdAndUpdate(id, post, { new: true })
   res.json(updatedBlog);
+}
+
+export const postComment = async (req, res) => {
+  const { id } = req.params;
+  const { value } = req.body;
+  const post = await PostMessage.findById(id);
+
+  post.comments.push(value);
+  const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true })
+  res.json(updatedPost)
 }
 
 export default router;

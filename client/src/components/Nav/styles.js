@@ -3,6 +3,7 @@ import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   appBar: {
+    justifyContent: 'space-between',
     borderRadius: 15,
     margin: '10px 0',
     display: 'flex',
@@ -10,6 +11,9 @@ export default makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '3px 50px',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column-reverse',
+    },
   },
   header: {
     color: '#63e4be',
@@ -49,7 +53,7 @@ export default makeStyles((theme) => ({
   },
   navLinks: {
     color: '#63e4be',
-    fontSize: '16px' ,
+    fontSize: '16px',
     margin: '0 5px'
   },
   purple: {

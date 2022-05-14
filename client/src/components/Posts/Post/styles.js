@@ -2,10 +2,12 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
   media: {
-    height: 0,
-    paddingTop: '56.25%',
+    height: '300px',
+    // paddingTop: '55%',
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     backgroundBlendMode: 'darken',
+    borderRadius: '15px',
+    objectFit:'contain'
   },
   border: {
     border: 'solid',
@@ -13,41 +15,53 @@ export default makeStyles({
   fullHeightCard: {
     height: '100%',
   },
+  buttonReadMore: {
+    color: '#63e4be',
+    // backgroundColor: '#63e4be',
+    cursor: 'pointer'
+  },
   card: {
     display: 'flex',
+    // width: '100%',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     borderRadius: '15px',
-    height: '100%',
+    height: '60%',
     position: 'relative',
   },
+  cardInner: {
+    padding: '20px',
+  },
   snippet: {
-    height: '90px'
+    // height: '40px'
   },
   overlay: {
-    position: 'absolute',
-    top: '10px',
-    left: '20px',
-    color: 'white',
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // top: '10px',
+    // left: '20px',
+    color: 'gray',
   },
   overlay2: {
     cursor: 'pointer',
-    position: 'absolute',
+    position: 'relative',
     right: '5px',
-    color: '#fff'
+    color: 'gray'
   },
   openBtn: {
     // position: 'absolute',
-    top: '15px',
+    // top: '15px',
     // fontSize: '15px'
   },
   editBtn: {
     // position: 'absolute',
-    top: '70px'
+    // top: '70px'
   },
   deleteBtn: {
     // position: 'absolute',
-    top: '120px',
+    // top: '120px',
 
   },
   grid: {
@@ -60,14 +74,16 @@ export default makeStyles({
   },
   title: {
     padding: '0 16px',
+    textAlign: 'center',
   },
   cardActions: {
     padding: '0 16px 8px 16px',
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     cursor: 'pointer'
   },
   pointer: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   }
 });
