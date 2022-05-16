@@ -45,9 +45,9 @@ export const createBlog = (post, navigate) => async (dispatch) => {
   try {
     dispatch({ type: START_SPINNER });
     const { data } = await api.createBlog(post);
-    navigate(`/posts/$data._id`)
     dispatch({ type: CREATE, payload: data });
     dispatch({ type: STOP_SPINNER });
+    navigate(`/posts/${data._id}`);
   } catch (error) {
     console.log(error);
   }

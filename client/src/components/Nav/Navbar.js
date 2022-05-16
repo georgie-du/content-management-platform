@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { AppBar, Avatar, Button, Toolbar, Typography,Container } from "@material-ui/core";
+import { AppBar, Avatar, Button, Toolbar, Typography, Container } from "@material-ui/core";
 import useStyles from './styles'
 import { useDispatch } from "react-redux";
 import decode from 'jwt-decode';
@@ -35,7 +35,7 @@ function Navbar() {
 
   return (
     <Container maxWidth='lg' >
-      <AppBar className={styles.appBar} position="static" color="inherit">
+      <AppBar className={styles.appBar}  color="inherit">
         <div className={styles.logoContainer}>
           <Typography className={styles.header} component={Link} to="/" color="primary" variant="h4" align="center">
             i<span className={styles.headerSpan}>B</span>log

@@ -6,15 +6,22 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  formContainer: {
+ 
+  },
 
   paper: {
     padding: theme.spacing(4),
-    margin: '40px 5px'
+    margin: '40px 5px',
+       position: 'sticky',
+    top: '250px',
+    display: 'block'
   },
   form: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+
   },
   createBlog: {
     color: '#63e4be'
@@ -22,8 +29,10 @@ export default makeStyles((theme) => ({
   fileInput: {
     width: '100%',
     margin: '30px 0',
+    
   },
   buttonSubmit: {
     marginBottom: 10,
+   
   },
 }));

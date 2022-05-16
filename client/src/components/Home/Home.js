@@ -60,10 +60,10 @@ function Home() {
                   </Box>
                 </Typography>
                 <Grid container style={{ justifyContent: "space-between" }} alignItems="stretch" spacing={3} className={styles.gridContainer}>
-                  <Grid item xs={12} sm={12} md={8}>
+                  <Grid item xs={12} sm={12} md={8} lg={8}>
                     <Posts setCurrentId={setCurrentId} />
                   </Grid>
-                  <Grid item xs={12} sm={12} md={4}>
+                  <Grid item xs={12} sm={12} md={4} lg={4}>
                     <AppBar className={styles.appBarSearch} position="static" color="inherit">
                       <TextField name="search" label="Search Title" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={handleKeyPress} />
                       <ChipInput style={{ margin: '10px 0' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />
@@ -82,10 +82,10 @@ function Home() {
               // <Container maxWidth='xl'>
               <>
                 <Grid container className={styles.gridContainer}>
-                  <Grid item xs={12} sm={6} md={7} >
+                  <Grid item xs={12} sm={12} md={8} >
                     <Posts setCurrentId={setCurrentId} />
                   </Grid>
-                  <Grid item xs={12} sm={6} md={4} >
+                  <Grid item xs={12} sm={12} md={4} >
                     <AppBar className={styles.appBarSearch} position="sticky" color="inherit">
                       <TextField name="search" label="Search Title" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={handleKeyPress} />
                       <ChipInput style={{ margin: '10px 0' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />

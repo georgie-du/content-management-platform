@@ -5,7 +5,7 @@ export default makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     gap:'25px',
-    alignItems: 'center',
+    // alignItems: 'center',
     marginTop:'1rem', 
   },
   smMargin: {

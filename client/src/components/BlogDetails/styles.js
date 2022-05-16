@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 export default makeStyles((theme) => ({
   outerContainer: {
     display: 'flex',
+    marginTop:'30px'
   },
   container: {
   },
@@ -11,10 +12,12 @@ export default makeStyles((theme) => ({
     objectFit: 'cover',
     width: '100%',
     maxHeight: '400px',
-
+    
   },
   card: {
     display: 'flex',
+    justifyContent: 'center',
+    gap: '25px',
     width: '100%',
     [theme.breakpoints.down('sm')]: {
       flexWrap: 'wrap',
@@ -42,14 +45,19 @@ export default makeStyles((theme) => ({
       width: '20%',
     },
   },
-  recommendedBlogsImg:{
+  recommendedBlogsImg: {
     borderRadius: '20px',
-    width: "100%",  
+    width: "100%",
     height: "100px",
     objectFit: 'cover'
   },
   loadingPaper: {
-    display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px', borderRadius: '15px', height: '39vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '20px',
+    borderRadius: '15px',
+    height: '39vh',
   },
   commentsOuterContainer: {
     display: 'flex',
