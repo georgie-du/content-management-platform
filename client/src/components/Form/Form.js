@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 
 
 
-function Form({ currentId, setCurrentId }) {
+function Form({ currentId, setCurrentId,onClose }) {
 	const [postData, setPostData] = useState({
 		title: '',
 		message: '',
@@ -46,13 +46,14 @@ function Form({ currentId, setCurrentId }) {
 			dispatch(createBlog({ ...postData, name: user?.result?.name }));
 		}
 		clearFields();
+		onClose();
 	}
 
 
 	return (
 		<>
 			{/* <Container className={styles.formContainer} > */}
-				<Paper className={styles.paper} style={{ justifyContent: "center" }}  >
+				{/* <Paper className={styles.paper} style={{ justifyContent: "center" }}  > */}
 					<form autoComplete='off' className={styles.form} onSubmit={handleSubmit} >
 						<Typography className={styles.createBlog} variant="h6" margin="normal" >{currentId ? 'Edit' : 'Create'} a blog post</Typography>
 						<TextField name="title" required margin="dense" label="Title" variant="standard" fullWidth value={postData.title} onChange={handleTextField} />
@@ -66,7 +67,7 @@ function Form({ currentId, setCurrentId }) {
 							<Button type="submit" onClick={clearFields}>Clear</Button>
 						</ButtonGroup>
 					</form>
-				</Paper>
+				{/* </Paper> */}
 			{/* </Container>  */}
 		</>
 	)

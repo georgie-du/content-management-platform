@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Post from "./Post/Post";
 import useStyles from "./styles";
 
-function Posts({ setCurrentId }) {
+function Posts({ setCurrentId,openModal,setOpenModal }) {
   const { posts, isLoading } = useSelector((state) => state.posts);
   const styles = useStyles();
 
@@ -15,7 +15,7 @@ function Posts({ setCurrentId }) {
       <Grid className={styles.mainContainer} container >
         {posts.map((post) => (
           <Grid key={post._id} item xs={12} sm={12} md={12} lg={11}>
-            <Post post={post} setCurrentId={setCurrentId} />
+            <Post post={post} openModal={openModal} setCurrentId={setCurrentId} setOpenModal={setOpenModal} />
           </Grid>
         ))}
       </Grid>

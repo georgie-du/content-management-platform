@@ -2,12 +2,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   appBarSearch: {
-    borderRadius: 4,
+    borderRadius: 10,
     marginBottom: '1rem',
     marginTop: '2rem',
     display: 'flex',
     padding: '16px',
-    top:'25px'
+    top: '25px',
+    zIndex: '0',
   },
   pagination: {
     borderRadius: 15,
@@ -27,4 +28,10 @@ export default makeStyles((theme) => ({
     backgroundColor: '#63e4be',
     color: '#fff',
   },
+  createButton: {
+    position: 'relative',
+    top: '100px',
+    backgroundColor: 'lightGrey',
+    color:'#fff',
+  }
 }));

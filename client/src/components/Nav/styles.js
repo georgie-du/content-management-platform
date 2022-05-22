@@ -32,21 +32,42 @@ export default makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'flex-end',
-    width: '400px',
+    width: '50%',
+    [theme.breakpoints.down('md')]: {
+      width: '80%',
+    },
   },
   profile: {
     display: 'flex',
-    width: '400px',
-    justifyContent: 'space-evenly'
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-evenly',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
   },
   userName: {
-    display: 'flex',
+    // display: 'flex',
     alignItems: 'center',
-    color: '#666'
+    color: '#666',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '.9rem',
+      textAlign: 'center',
+      justifyContent: 'space-evenly',
+    },
+  },
+  avatar: {
+    backgroundColor: 'lightgrey',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    },
   },
   logoContainer: {
     display: 'flex',
     alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+      width: '20%',
+    },
   },
   logout: {
     backgroundColor: '#63e4be',

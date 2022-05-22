@@ -7,15 +7,15 @@ export default makeStyles((theme) => ({
     },
   },
   formContainer: {
- 
+
   },
 
   paper: {
     padding: theme.spacing(4),
     margin: '40px 5px',
-       position: 'sticky',
+    position: 'sticky',
     top: '250px',
-    display: 'block'
+    display: 'block',
   },
   form: {
     display: 'flex',
@@ -29,10 +29,9 @@ export default makeStyles((theme) => ({
   fileInput: {
     width: '100%',
     margin: '30px 0',
-    
   },
   buttonSubmit: {
     marginBottom: 10,
-   
+
   },
 }));

@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 import { deleteBlog, likeBlog } from "../../../actions/posts";
 import { useNavigate } from "react-router-dom";
 
-function Post({ post, setCurrentId }) {
+function Post({ post, setCurrentId ,openModal,setOpenModal}) {
   const dispatch = useDispatch();
   const styles = useStyles();
   const navigate = useNavigate();
@@ -18,6 +18,8 @@ function Post({ post, setCurrentId }) {
 
   const handleUpdate = () => {
     setCurrentId(post._id);
+    console.log(post._id)
+    setOpenModal(true)
   };
 
   const openBlog = (_id) => navigate(`/posts/${post._id}`);
