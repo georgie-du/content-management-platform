@@ -3,13 +3,12 @@ import { deepPurple } from '@material-ui/core/colors';
 
 export default makeStyles((theme) => ({
   appBar: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     borderRadius: 15,
-    margin: '10px 0',
+    marginBottom: '10px',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    position: 'static',
     alignItems: 'center',
     padding: '3px 50px',
     [theme.breakpoints.down('xs')]: {
@@ -40,24 +39,23 @@ export default makeStyles((theme) => ({
   profile: {
     display: 'flex',
     flexDirection: 'row',
-    width: '100%',
-    justifyContent: 'space-evenly',
+    width: '80%',
+    justifyContent: 'space-around',
     [theme.breakpoints.down('xs')]: {
       flexDirection: 'column',
     },
   },
   userName: {
-    // display: 'flex',
+    display: 'flex',
     alignItems: 'center',
-    color: '#666',
+    color: '#bbb',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '.9rem',
+      // fontSize: '.7rem',
       textAlign: 'center',
       justifyContent: 'space-evenly',
     },
   },
   avatar: {
-    backgroundColor: 'lightgrey',
     [theme.breakpoints.down('xs')]: {
       display: 'none'
     },

@@ -1,19 +1,24 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  outerContainer: {
+  appBarSearch: {
+    borderRadius: 10,
+    marginBottom: '1rem',
+    marginTop: '1rem',
     display: 'flex',
-    marginTop:'100px'
-  },
-  container: {
-  },
-  media: {
-    borderRadius: '20px',
-    objectFit: 'cover',
-    width: '100%',
-    maxHeight: '400px',
+    padding: '16px',
+    position: 'sticky',
+    top: '100px',
+    zIndex: '0',
+    backgroundColor: 'green',
     
   },
+  // outerContainer: {
+  //   position: 'sticky',
+  //   display: 'flex',
+  //   marginTop: '100px'
+  // },
+
   card: {
     display: 'flex',
     justifyContent: 'center',
@@ -27,7 +32,7 @@ export default makeStyles((theme) => ({
   section: {
     borderRadius: '20px',
     margin: '10px',
-    // flex: 1,
+    flex: 1,
     width: '100%'
   },
   imageSection: {
@@ -36,7 +41,7 @@ export default makeStyles((theme) => ({
       marginLeft: 0,
     },
   },
-  recommendedBlogs: {
+  mostlikedPosts: {
     display: 'flex',
     flexDirection: 'column',
 
@@ -45,7 +50,7 @@ export default makeStyles((theme) => ({
       width: '20%',
     },
   },
-  recommendedBlogsImg: {
+  mostlikedPostsImg: {
     borderRadius: '20px',
     width: "100%",
     height: "100px",
@@ -59,14 +64,5 @@ export default makeStyles((theme) => ({
     borderRadius: '15px',
     height: '39vh',
   },
-  commentsOuterContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-  commentsInnerContainer: {
-    height: '200px',
-    overflowY: 'auto',
-    marginRight: '30px',
-    width: '40%'
-  },
+
 }));

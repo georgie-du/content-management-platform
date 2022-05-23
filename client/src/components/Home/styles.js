@@ -2,13 +2,24 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
   appBarSearch: {
-    borderRadius: 10,
+    borderRadius: 15,
     marginBottom: '1rem',
-    marginTop: '2rem',
+    marginTop: '1rem',
     display: 'flex',
     padding: '16px',
-    top: '25px',
+    top: '100px',
     zIndex: '0',
+
+  },
+  appBarMostLiked: {
+    borderRadius: 15,
+    marginBottom: '1rem',
+    marginTop: '1rem',
+    display: 'flex',
+    padding: '16px',
+    top: '90px',
+    zIndex: '0',
+    bottom: '50vh',
   },
   pagination: {
     borderRadius: 15,
@@ -19,19 +30,29 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
   },
   gridContainer: {
+    marginTop: '80px',
     justifyContent: 'space-between',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column-reverse',
+    }, [theme.breakpoints.down('xs')]: {
+      marginTop: '150px'
     },
   },
   searchButton: {
+    position: 'relative',
+    display: 'flex',
     backgroundColor: '#63e4be',
     color: '#fff',
+    width: '50%',
+    margin: ' auto',
+    alignItems: 'center',
+    // marginTop: '10%',
   },
   createButton: {
     position: 'relative',
-    top: '100px',
-    backgroundColor: 'lightGrey',
-    color:'#fff',
+    margin: '10px 0',
+    backgroundColor: '#764ed8',
+    padding: '7px',
+    color: '#fff',
   }
 }));

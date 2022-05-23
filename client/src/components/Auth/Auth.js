@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { register, login } from '../../actions/auth';
 import InputField from './InputField';
 import { useNavigate } from 'react-router-dom';
-
 const initialState = {
   firstName: '',
   lastName: '',
@@ -50,11 +49,13 @@ function Auth() {
       console.log(err)
     }
   };
+
+
   const googleFailure = (err) => { alert('Google login failed. Please try again!', err) };
 
   return (
-    <React.Fragment>
-      <Container component="main" maxWidth="xs">
+    <div className={styles.outerContainer}>
+      <Container component="main" maxWidth="xs" className={styles.root}>
         <Paper className={styles.paper} elevation={1}>
           <Avatar className={styles.avatar}>
             <LockOutlinedIcon />
@@ -72,7 +73,7 @@ function Auth() {
               <InputField name='password' label='Password' handleChange={handleChange} type={seePassword ? 'text' : 'password'} handleSeePassword={handleSeePassword} />
               {isRegister && <InputField name='confirmPassword' label='Confirm Password' type='password' handleChange={handleChange} />}
             </Grid>
-            <Grid container style={{justifyContent:"center"}}>
+            <Grid container style={{ justifyContent: "center" }}>
               <Button type='submit' variant='contained' color='primary' className={styles.submit}>
                 {isRegister ? 'Register' : 'Log In'}
               </Button>
@@ -88,7 +89,7 @@ function Auth() {
                 cookiePolicy='single_host_origin'
               />
             </Grid>
-            <Grid container style={{justifyContent:'flex-end'}} >
+            <Grid container style={{ justifyContent: 'flex-end' }} >
               <Grid item>
                 <Button onClick={switchMode}>{isRegister ? 'Have an account? Log in' : "No  account? Register"}</Button>
               </Grid>
@@ -97,7 +98,7 @@ function Auth() {
 
         </Paper>
       </Container>
-    </React.Fragment>
+    </div>
   )
 }
 

@@ -11,6 +11,7 @@ import Pagination from "../Pagination/Pagination";
 import ChipInput from 'material-ui-chip-input'
 import useStyles from './styles';
 import '../Modal/index.css';
+import MostLiked from "../MostLiked/MostLiked";
 
 
 const useQuery = () => new URLSearchParams(useLocation().search);
@@ -57,12 +58,13 @@ function Home() {
           {(!user?.result?.name) ?
             (
               <>
-                <Typography variant='h6' >
-                  <Box sx={{ fontFamily: 'Monospace', m: 2 }}>
-                    Please Login to create blogs and like other people's blogs.
-                  </Box>
-                </Typography>
-                <Grid container style={{ justifyContent: "space-between" }} alignItems="stretch" spacing={3} className={styles.gridContainer}>
+
+                <Grid container spacing={3} className={styles.gridContainer}>
+                  <Typography variant='h6' >
+                    <Box sx={{ fontFamily: 'Monospace', width: '80vw', textAlign: 'center' }}>
+                      Please Login to create blogs and like other people's blogs.
+                    </Box>
+                  </Typography>
                   <Grid item xs={12} sm={12} md={8} lg={8}>
                     <Posts setCurrentId={setCurrentId} />
                   </Grid>
@@ -71,6 +73,9 @@ function Home() {
                       <TextField name="search" label="Search Title" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={handleKeyPress} />
                       <ChipInput style={{ margin: '10px 0' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />
                       <Button onClick={searchBlogPost} className={styles.searchButton} variant="contained" color="default">Search</Button>
+                    </AppBar>
+                    <AppBar className={styles.appBarMostLiked} position="sticky" color="inherit" elevation={1}>
+                      <MostLiked />
                     </AppBar>
                   </Grid>
                 </Grid>
@@ -85,18 +90,23 @@ function Home() {
               // <Container maxWidth='xl'>
               <>
                 <Modal currentId={currentId} setCurrentId={setCurrentId} open={openModal} onClose={() => setOpenModal(false)} />
-                <Grid container className={styles.gridContainer}>
-                  <Grid item xs={12} sm={12} md={8} >
+                <Grid container className={styles.gridContainer} spacing={3} >
+                  <Grid item xs={12} sm={12} md={7} lg={8} >
                     <Posts setCurrentId={setCurrentId} openModal={openModal} setOpenModal={setOpenModal} />
                   </Grid>
-                  <Grid item xs={12} sm={12} md={4} >
-                    <AppBar className={styles.appBarSearch} position="sticky" color="inherit" elevation={1}>
+                  <Grid item xs={12} sm={12} md={4} lg={4} >
+                    <AppBar className={styles.appBarSearch} position="static" color="inherit" elevation={1}>
                       <TextField name="search" label="Search Title" fullWidth value={search} onChange={(e) => setSearch(e.target.value)} onKeyPress={handleKeyPress} />
-                      <ChipInput style={{ margin: '10px 0' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />
+                      <ChipInput style={{ margin: '10px 0 ' }} value={tags} label='Search Tags' onAdd={handleAdd} onDelete={handleDelete} />
                       <Button onClick={searchBlogPost} className={styles.searchButton} variant="contained" color="default">Search</Button>
+                    </AppBar>
+                    <AppBar className={styles.appBarMostLiked} position="sticky" color="inherit" elevation={1}>
+
                       <Button variant="contained" color="default" onClick={() => setOpenModal(true)} className={styles.createButton}
                       >Create article</Button>
+                      <MostLiked />
                     </AppBar>
+
                   </Grid>
                 </Grid>
                 {(!searchQuery && !tags.length) && (

@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import useStyles from './styles'
 import { getBlog, getBlogsBySearch } from '../../actions/posts';
-import Form from '../Form/Form';
 
 
 function BlogDetails() {
@@ -36,7 +35,6 @@ function BlogDetails() {
       </Box>
     )
   }
-
   const recommendedBlogs = posts.filter(({ _id }) => _id !== post._id) // filter out the current post
 
   const openBlog = (_id) => navigate(`/posts/${_id}`);
@@ -66,7 +64,7 @@ function BlogDetails() {
           <Paper >
             {!!recommendedBlogs.length && (
               <div className={styles.section}>
-                <Typography gutterBottom variant="h5">Simmilar articles:</Typography>
+                <Typography gutterBottom variant="h5">Similar articles:</Typography>
                 {/* <Divider /> */}
                 <div className={styles.recommendedBlogs}>
                   {recommendedBlogs.map(({ title, name, message, likes, fileSelected, _id }) => (
