@@ -1,5 +1,5 @@
 import * as api from "../api";
-import { FETCH_POSTS, FETCH_POST, FETCH__FROM_SEARCH, CREATE, UPDATE, DELETE, START_SPINNER, STOP_SPINNER, COMMENT } from '../constants/actionTypes'
+import { FETCH_POSTS_BY_PAGE, FETCH_POST, FETCH__FROM_SEARCH, CREATE, UPDATE, DELETE, START_SPINNER, STOP_SPINNER, COMMENT } from '../constants/actionTypes'
 
 // action creators
 
@@ -8,8 +8,8 @@ export const getBlogs = (page) => async (dispatch) => {
     dispatch({ type: START_SPINNER });
     const { data } = await api.fetchPosts(page);
 
-    console.log(data);
-    dispatch({ type: FETCH_POSTS, payload: data });
+    // console.log(data);
+    dispatch({ type: FETCH_POSTS_BY_PAGE, payload: data });
     dispatch({ type: STOP_SPINNER });
   } catch (error) {
     console.log(error);

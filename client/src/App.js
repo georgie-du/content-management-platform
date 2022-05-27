@@ -4,17 +4,14 @@ import { Container } from "@material-ui/core";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
-// import CreateBlog from "./pages/CreateBlog";
 import BlogDetails from "./components/BlogDetails/BlogDetails";
-
-
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
     <Router>
-      <Container maxWidth='xl'>
+      <Container maxWidth='lg'>
         <Navbar />
         <Routes>
           <Route path="/" exact element={<Navigate to="/posts" />} />

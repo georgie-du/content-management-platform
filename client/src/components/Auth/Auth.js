@@ -54,7 +54,7 @@ function Auth() {
   const googleFailure = (err) => { alert('Google login failed. Please try again!', err) };
 
   return (
-    <div className={styles.outerContainer}>
+    <Container className={styles.outerContainer} maxWidth="xl" >
       <Container component="main" maxWidth="xs" className={styles.root}>
         <Paper className={styles.paper} elevation={1}>
           <Avatar className={styles.avatar}>
@@ -98,7 +98,7 @@ function Auth() {
 
         </Paper>
       </Container>
-    </div>
+    </Container>
   )
 }
 

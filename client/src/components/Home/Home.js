@@ -3,7 +3,6 @@ import { Container, Grid, Typography, Box, AppBar, TextField, Grow, Button } fro
 import { useNavigate, useLocation } from "react-router-dom";
 import { getBlogsBySearch } from '../../actions/posts';
 import Posts from '../Posts/Posts';
-import Form from '../Form/Form';
 import Modal from "../Modal/Modal";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
@@ -28,8 +27,6 @@ function Home() {
   const [search, setSearch] = useState('');
   const [tags, setTags] = useState([]);
   const [openModal, setOpenModal] = useState(false);
-
-
 
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {

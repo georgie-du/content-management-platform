@@ -1,5 +1,5 @@
 
-export const FETCH_POSTS = 'FETCH_POSTS';
+export const FETCH_POSTS_BY_PAGE = 'FETCH_POSTS_BY_PAGE';
 export const FETCH__FROM_SEARCH = 'FETCH__FROM_SEARCH';
 export const FETCH_POST = 'FETCH_POST';
 export const CREATE = 'CREATE';

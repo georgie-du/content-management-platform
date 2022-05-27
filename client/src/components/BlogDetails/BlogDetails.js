@@ -14,11 +14,10 @@ function BlogDetails() {
   const navigate = useNavigate();
   const styles = useStyles();
   const { id } = useParams();
-  const [currentId, setCurrentId] = useState(null);
+
   useEffect(() => {
     dispatch(getBlog(id));
   }, [id])
-
 
   useEffect(() => {
     if (post) {
@@ -71,7 +70,7 @@ function BlogDetails() {
                     <div style={{ margin: '20px', cursor: 'pointer', width: '250px' }} onClick={() => openBlog(_id)} key={_id}>
                       <img src={fileSelected || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} className={styles.recommendedBlogsImg} />
                       <Typography gutterBottom variant="h6">{title}</Typography>
-                      <Typography gutterBottom variant="subtitle2">{name}</Typography>
+                      <Typography gutterBottom variant="subtitle2">Author: {name}</Typography>
                       {/* <Typography gutterBottom variant="subtitle2">{message.split(' ').slice(0, 20).join(' ')}...</Typography>
                     <Typography gutterBottom variant="subtitle1">Likes: {likes.length}</Typography> */}
                     </div>

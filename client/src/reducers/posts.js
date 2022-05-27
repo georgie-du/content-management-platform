@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_POST, FETCH__FROM_SEARCH, CREATE, UPDATE, DELETE, START_SPINNER, STOP_SPINNER, COMMENT } from '../constants/actionTypes'
+import { FETCH_POSTS_BY_PAGE, FETCH_POST, FETCH__FROM_SEARCH, CREATE, UPDATE, DELETE, START_SPINNER, STOP_SPINNER, COMMENT } from '../constants/actionTypes'
 
 export default (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
@@ -6,7 +6,7 @@ export default (state = { isLoading: true, posts: [] }, action) => {
       return { ...state, isLoading: true }
     case STOP_SPINNER:
       return { ...state, isLoading: false }
-    case FETCH_POSTS:
+    case FETCH_POSTS_BY_PAGE:
       return {
         ...state,
         posts: action.payload.data,

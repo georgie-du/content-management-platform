@@ -9,9 +9,7 @@ export default makeStyles(() => ({
     justifyContent: "center",
     alignItems: "center",
   },
-  header: {
-    // color: "rgba(0,183,255, 1)",/
-  },
+
   image: {
     marginLeft: "10px",
     borderRadius: 25
