@@ -9,7 +9,6 @@ export default makeStyles((theme) => ({
     padding: '16px',
     top: '100px',
     zIndex: '0',
-
   },
   appBarMostLiked: {
     borderRadius: 15,
@@ -20,6 +19,9 @@ export default makeStyles((theme) => ({
     top: '90px',
     zIndex: '0',
     bottom: '50vh',
+    [theme.breakpoints.down('sm')]: {
+      top: '200px',
+    },
   },
   pagination: {
     borderRadius: 15,
@@ -47,6 +49,7 @@ export default makeStyles((theme) => ({
     margin: ' auto',
     alignItems: 'center',
     // marginTop: '10%',
+    
   },
   createButton: {
     position: 'relative',

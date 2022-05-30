@@ -10,10 +10,10 @@ export const login = async (req, res) => {
   try {
     // find user in db
     const currentUser = await User.findOne({ email });
-    if (!currentUser) return res.status(404).json({ message: 'User not found.' });
+    if (!currentUser) return res.status(404).json({ message: 'Invalid credentials!' });
     const isPasswordMatching = await bcrypt.compare(password, currentUser.password);
 
-    if (!isPasswordMatching) return res.status(400).json({ message: "Invalid credentials" });
+    if (!isPasswordMatching) return res.status(400).json({ message: "Invalid password" });
 
     const token = jwt.sign({ email: currentUser.email, id: currentUser._id }, secret, { expiresIn: "1h" });
 
@@ -47,3 +47,4 @@ export const register = async (req, res) => {
     console.log(error);
   }
 }
+

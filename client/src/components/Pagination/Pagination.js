@@ -12,7 +12,7 @@ function PagesBar({ page }) {
 
   useEffect(() => {
     if (page) dispatch(getBlogs(page));
-  }, [page])
+  }, [page, dispatch])
 
   return (
     <Pagination

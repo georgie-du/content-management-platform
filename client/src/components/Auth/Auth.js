@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { Button, Avatar, Paper, Grid, Typography, Container } from '@material-ui/core';
+import { Button, Avatar, Paper, Grid, Typography, Container, Snackbar } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import GoogleLogin from 'react-google-login';
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import useStyles from './styles';
-import { useDispatch } from 'react-redux';
 import { register, login } from '../../actions/auth';
 import InputField from './InputField';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next';
+
 const initialState = {
   firstName: '',
   lastName: '',
@@ -15,22 +18,36 @@ const initialState = {
   confirmPassword: ''
 }
 
-
 function Auth() {
   const [isRegister, setIsRegister] = useState(false);
   const [seePassword, setSeePassword] = useState(false);
   const [formInfo, setFormInfo] = useState(initialState);
+  const { authFailure, isError } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const styles = useStyles();
 
+  // open snackbar error MUI
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+  // form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formInfo)
+    setOpen(true);
     isRegister ? dispatch(register(formInfo, navigate)) : dispatch(login(formInfo, navigate));
+    if (isError) {
+      console.log(authFailure)
+    }
   };
   const handleChange = (e) => { setFormInfo({ ...formInfo, [e.target.name]: e.target.value }) };
   const handleSeePassword = () => { setSeePassword((prev) => !prev) };
+
 
   const switchMode = () => {
     setFormInfo(initialState);
@@ -50,7 +67,6 @@ function Auth() {
     }
   };
 
-
   const googleFailure = (err) => { alert('Google login failed. Please try again!', err) };
 
   return (
@@ -60,30 +76,32 @@ function Auth() {
           <Avatar className={styles.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography variant="h6" component='h1'>{isRegister ? "Register" : "Log in"}</Typography>
+          <Typography variant="h6" component='h1'>{isRegister ? t("registerButton") : t("loginButton")}</Typography>
+          {isError &&
+            <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}
+            ><Alert severity="error" onClose={handleClose}>{authFailure}</Alert>
+            </Snackbar>}
+
           <form className={styles.form} onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               {isRegister && (
                 <React.Fragment>
-                  <InputField name="firstName" label="First Name" handleChange={handleChange} autofocus halfWidth />
-                  <InputField name="lastName" label="Last Name" handleChange={handleChange} halfWidth />
+                  <InputField name="firstName" label={t("firstName")} handleChange={handleChange} autofocus halfWidth />
+                  <InputField name="lastName" label={t("lastName")} handleChange={handleChange} halfWidth />
                 </React.Fragment>
               )}
               <InputField name='email' label='Email' type='email' handleChange={handleChange} />
-              <InputField name='password' label='Password' handleChange={handleChange} type={seePassword ? 'text' : 'password'} handleSeePassword={handleSeePassword} />
-              {isRegister && <InputField name='confirmPassword' label='Confirm Password' type='password' handleChange={handleChange} />}
+              <InputField name='password' label={t("password")} handleChange={handleChange} type={seePassword ? 'text' : 'password'} handleSeePassword={handleSeePassword} />
+              {isRegister && <InputField name='confirmPassword' label={t("confirmPassword")} type='password' handleChange={handleChange} />}
             </Grid>
             <Grid container style={{ justifyContent: "center" }}>
               <Button type='submit' variant='contained' color='primary' className={styles.submit}>
-                {isRegister ? 'Register' : 'Log In'}
+                {isRegister ? t("registerButton") : t("loginButton")}
               </Button>
               <GoogleLogin
                 className={styles.googleButton}
-                buttonText="Login with Google"
+                buttonText={t("loginWithGoogle")}
                 clientId='525050224914-bjea0nrqetvscis5ulfd7mk08m1799ul.apps.googleusercontent.com'
-                // render={(renderProps) => (
-                //   <Button className={styles.googleButton} variant='outlined' onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />}>login</Button>
-                // )}
                 onSuccess={googleSucces}
                 onFailure={googleFailure}
                 cookiePolicy='single_host_origin'
@@ -91,7 +109,7 @@ function Auth() {
             </Grid>
             <Grid container style={{ justifyContent: 'flex-end' }} >
               <Grid item>
-                <Button onClick={switchMode}>{isRegister ? 'Have an account? Log in' : "No  account? Register"}</Button>
+                <Button onClick={switchMode}>{isRegister ? t("loginMessage" ) : t("registerMessage")}</Button>
               </Grid>
             </Grid>
           </form>

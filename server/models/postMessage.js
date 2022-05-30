@@ -17,7 +17,7 @@ const postSchema = new Schema(
     comments: { type: [String], default: [] },
     createdAt: {
       type: Date,
-      dafault: new Date(),
+      default: new Date(),
     },
   },
   { timestamps: true }

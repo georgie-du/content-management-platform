@@ -68,7 +68,8 @@ export default makeStyles((theme) => ({
   },
   logout: {
     backgroundColor: '#63e4be',
-    color: '#fff'
+    color: '#fff',
+    padding:'0 10px'
   },
   navLinks: {
     color: '#63e4be',

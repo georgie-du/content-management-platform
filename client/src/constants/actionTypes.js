@@ -7,9 +7,11 @@ export const UPDATE = 'UPDATE';
 export const DELETE = 'DELETE';
 export const LIKE = 'LIKE';
 export const AUTH = 'AUTH';
+export const AUTH_ERROR = 'AUTH_ERROR';
 export const LOGOUT = 'LOGOUT';
 export const START_SPINNER = 'START_SPINNER';
 export const STOP_SPINNER = 'STOP_SPINNER';
 export const COMMENT = 'COMMENT';
+export const FETCH_USER = 'COMMENT';
 
 

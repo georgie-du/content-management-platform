@@ -32,11 +32,14 @@ export async function getBlog(req, res) {
 
 // get list of search results
 export async function getBlogsBySearch(req, res) {
-  const { searchQuery, tags } = req.query;
+  const { searchTerm, tags, authorName } = req.query;
   try {
-    const title = new RegExp(searchQuery, 'i'); // ignore case 
-    const blogs = await PostMessage.find({ $or: [{ title }, { tags: { $in: tags.split(',') } }] });
-    res.json({ data: blogs });
+    const title = new RegExp(searchTerm, 'i'); // ignore case 
+    const name = new RegExp(authorName, 'i'); // ignore case
+    console.log('radone', name)
+    const posts = await PostMessage.find({ $or: [{ title }, { tags: { $in: tags.split(',') } }, { name }] });
+    console.log('posts searched from backend', posts)
+    res.status(201).json({ data: posts });
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
@@ -93,7 +96,7 @@ export async function likeBlog(req, res) {
   const index = post.likes.findIndex((id) => id === String(req.userId));
 
   if (index === -1) {
-    //like the post
+    //like the post 
     post.likes.push(req.userId);
   } else {
     // dislike the post

@@ -30,10 +30,11 @@ export const getBlog = (id) => async (dispatch) => {
 };
 
 
-export const getBlogsBySearch = (searchQuery) => async (dispatch) => {
+export const getBlogsBySearch = (params) => async (dispatch) => {
   try {
     dispatch({ type: START_SPINNER });
-    const { data: { data } } = await api.fetchBlogsBySearch(searchQuery);
+    const { data: { data } } = await api.fetchBlogsBySearch(params);
+    console.log('data received from server', data)
     dispatch({ type: FETCH__FROM_SEARCH, payload: data });
     dispatch({ type: STOP_SPINNER });
   } catch (error) {

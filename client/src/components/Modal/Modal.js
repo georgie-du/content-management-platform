@@ -1,11 +1,8 @@
 import React from 'react'
 import Form from '../Form/Form';
 import typewritter from '../../images/typewritter.jpg'
-import { useSelector } from 'react-redux';
 
 const Modal = ({ open, onClose, currentId, setCurrentId }) => {
-  const post = useSelector((state) => currentId ? state.posts.posts.find((post) => post._id === currentId) : null);
-  console.log('din model. post: ', post)
   if (!open) return null;
   return (
     <div onClick={onClose} className='overlay'>

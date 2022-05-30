@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import { AppBar, Avatar, Button, Toolbar, Typography, Container } from "@material-ui/core";
+import { AppBar, Avatar, Button, Toolbar, Typography, Container, ButtonGroup } from "@material-ui/core";
 import useStyles from './styles'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux'
 import decode from 'jwt-decode';
 import * as actionType from '../../constants/actionTypes';
 import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next';
 
 function Navbar() {
   const styles = useStyles();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  // const userId = useSelector((state) => state.user.id);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     const token = user?.token;
     // logout user after 1h
     if (token) {
       const decodedToken = decode(token);
-      console.log(decodedToken.exp)
+      // console.log(decodedToken.exp)
 
       if (decodedToken.exp * 1000 < new Date().getTime()) logout();
     }
@@ -31,6 +35,10 @@ function Navbar() {
     dispatch({ type: actionType.LOGOUT })
     navigate('/auth');
     setUser(null);
+  }
+
+  const changeLanguage = (e) => {
+    i18n.changeLanguage(e.currentTarget.value);
   }
 
   return (
@@ -46,17 +54,27 @@ function Navbar() {
             <div className={styles.profile}>
               <Avatar className={styles.avatar} alt={user.result.name}>{user.result.name.charAt(0)}</Avatar>
               <Typography className={styles.userName} variant="h6" >{user.result.name}</Typography>
-              <Button variant="contained" className={styles.logout} onClick={logout} >Logout</Button>
+              <Button component={Link} to="/" variant="text" className={styles.navLinks}>{t('home')}</Button>
+              <Button className={styles.logout} onClick={logout} >{t('logout')}</Button>
+              <ButtonGroup aria-label="medium secondary button group">
+                <Button size='small' variant="outlined" onClick={changeLanguage} value='en'>EN</Button>
+                <Button size='small' variant="outlined" onClick={changeLanguage} value='ro'>RO</Button>
+              </ButtonGroup>
             </div>
           ) : (
             <>
-              <Button component={Link} to="/" variant="text" className={styles.navLinks}>Blogs</Button>
-              <Button component={Link} to="/auth" variant="text" className={styles.navLinks}>Log in</Button>
+              <Button component={Link} to="/" variant="text" className={styles.navLinks}>{t('home')}</Button>
+
+              <Button component={Link} to="/auth" variant="text" className={styles.navLinks}>{t('login')}</Button>
+              <ButtonGroup aria-label="medium secondary button group">
+                <Button size='small' variant="outlined" onClick={changeLanguage} value='en'>EN</Button>
+                <Button size='small' variant="outlined" onClick={changeLanguage} value='ro'>RO</Button>
+              </ButtonGroup>
             </>
           )}
         </Toolbar>
       </AppBar>
-    </Container>
+    </Container >
   )
 }
 

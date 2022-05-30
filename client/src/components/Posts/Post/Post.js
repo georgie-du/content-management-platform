@@ -2,18 +2,19 @@ import React from "react";
 import useStyles from "./styles";
 import { Card, CardContent, CardActions, CardMedia, Button, Typography, Box } from '@material-ui/core';
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import moment from 'moment';
 import { useDispatch } from "react-redux";
 import { deleteBlog, likeBlog } from "../../../actions/posts";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
-function Post({ post, setCurrentId ,openModal,setOpenModal}) {
+function Post({ post, setCurrentId, openModal, setOpenModal }) {
   const dispatch = useDispatch();
   const styles = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const user = JSON.parse(localStorage.getItem('profile'));
 
   const handleUpdate = () => {
@@ -26,15 +27,10 @@ function Post({ post, setCurrentId ,openModal,setOpenModal}) {
 
   const Likes = () => {
     if (post.likes.length > 0) {
-      return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
-        ? (
-          <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}</>
-        ) : (
-          <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
-        );
+      return <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? `${t("like")}` : `${t("likes")}`}</>
     }
 
-    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
+    return <><ThumbUpAltOutlined fontSize="small" />&nbsp;{t("likeIt")}</>;
   };
 
 
@@ -60,8 +56,8 @@ function Post({ post, setCurrentId ,openModal,setOpenModal}) {
         <Box className={styles.pointer} onClick={() => openBlog(post._id)}>
           <Typography className={styles.title} gutterBottom variant="h5">{post.title}</Typography>
           <Box className={styles.overlay}>
-            <Typography variant='body2' style={{ paddingRight: '25px' }}>Author: {post.name}</Typography>
-            <Typography variant='body2'>Created: {moment(post.createdAt).fromNow()}</Typography>
+            <Typography variant='body2' style={{ paddingRight: '25px' }}>{t("author")}: {post.name}</Typography>
+            <Typography variant='body2'>{t("created")}: {moment(post.createdAt).fromNow()}</Typography>
           </Box>
           <CardContent>
             <Typography variant="body2" className={styles.snippet} color="textSecondary" component="p">{post.message.split(' ').slice(0, 35).join(' ')}...</Typography>
@@ -72,7 +68,7 @@ function Post({ post, setCurrentId ,openModal,setOpenModal}) {
           <Button size='small' color='default' disabled={!user?.result} onClick={() => dispatch(likeBlog(post._id))}>
             <Likes />
           </Button>
-          <Button className={styles.buttonReadMore} variant='text' size='small' onClick={() => openBlog(post._id)} >Continue reading</Button>
+          <Button className={styles.buttonReadMore} variant='text' size='small' onClick={() => openBlog(post._id)} >{t("continueReading")}</Button>
         </CardActions>
       </div>
     </Card>

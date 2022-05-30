@@ -3,11 +3,13 @@ import { Typography, LinearProgress, Box } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import useStyles from './styles'
+import { useTranslation } from 'react-i18next';
 
 const MostLiked = () => {
   const navigate = useNavigate();
   const styles = useStyles();
   const { posts, isLoading } = useSelector((state) => state.posts);
+  const { t } = useTranslation();
 
   const likedPosts = posts.filter(post => post.likes.length > 1);
   const mostLikedPosts = likedPosts.sort((a, b) => b.likes.length - a.likes.length)
@@ -32,7 +34,7 @@ const MostLiked = () => {
 
         {!!firstFourLikedPosts.length && (
           <div className={styles.section}>
-            <Typography gutterBottom variant="h5">Most liked articles:</Typography>
+            <Typography gutterBottom variant="h5">{t("mostLikedArticles")}:</Typography>
             {/* <Divider /> */}
             <div className={styles.mostLikedPosts}>
               {firstFourLikedPosts.map(({ title, name, message, likes, fileSelected, _id }) => (
