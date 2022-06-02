@@ -20,7 +20,6 @@ function PagesBar({ page }) {
       count={totalPages}
       page={Number(page) || 1}
       variant='outlined'
-      // color='default'
       renderItem={(item) => (
         <PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
       )}

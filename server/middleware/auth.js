@@ -10,18 +10,17 @@ const auth = async (req, res, next) => {
     // ckeck if token is custom. !google
     const isCustomAuth = token.length < 500;
 
-    let decodedData;
+    let decodedToken;
 
     if (token && isCustomAuth) {
-      decodedData = jwt.verify(token, secret);
+      decodedToken = jwt.verify(token, secret);
 
-      req.userId = decodedData?.id;
+      req.userId = decodedToken?.id;
     } else {
-      decodedData = jwt.decode(token);
-// sub - google user id
-      req.userId = decodedData?.sub;
+      decodedToken = jwt.decode(token);
+      // sub - google user's id
+      req.userId = decodedToken?.sub;
     }
-
     next();
   } catch (error) {
     console.log(error);

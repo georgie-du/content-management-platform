@@ -10,12 +10,12 @@ export const login = async (req, res) => {
   try {
     // find user in db
     const currentUser = await User.findOne({ email });
-    if (!currentUser) return res.status(404).json({ message: 'Invalid credentials!' });
+    if (!currentUser) return res.status(404).json({ message: "User doesn't exist!" });
     const isPasswordMatching = await bcrypt.compare(password, currentUser.password);
 
-    if (!isPasswordMatching) return res.status(400).json({ message: "Invalid password" });
+    if (!isPasswordMatching) return res.status(400).json({ message: "Invalid credentials" });
 
-    const token = jwt.sign({ email: currentUser.email, id: currentUser._id }, secret, { expiresIn: "2h" });
+    const token = jwt.sign({ email: currentUser.email, id: currentUser._id }, secret, { expiresIn: "1h" });
 
     res.status(200).json({ result: currentUser, token });
 

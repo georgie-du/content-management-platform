@@ -28,14 +28,13 @@ function Home() {
   const styles = useStyles();
   const [openModal, setOpenModal] = useState(false);
   const { t } = useTranslation();
-
   const [searchTerm, setSearchTerm] = useState('');
   const [tags, setTags] = useState([]);
   const [authorName, setAuthorName] = useState('');
 
   useEffect(() => {
     dispatch(getBlogs());
-  }, [ dispatch])
+  }, [dispatch, currentId])
 
 
   let params = {};
@@ -55,8 +54,8 @@ function Home() {
       dispatch(getBlogsBySearch({ searchTerm, tags: tags.join(','), authorName }))
       navigate(`/posts/search?searchTerm=${searchTerm || 'none'}&tags=${tags.join(',') || 'none'}&authorName=${authorName || 'none'}`)
     } else {
-      console.log('search failed')
-      navigate('/');
+      // navigate('/');
+
     }
   };
 

@@ -55,6 +55,7 @@ export default makeStyles((theme) => ({
     },
   },
   avatar: {
+    
     [theme.breakpoints.down('xs')]: {
       display: 'none'
     },

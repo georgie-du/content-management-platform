@@ -9,9 +9,9 @@ function Posts({ setCurrentId, openModal, setOpenModal }) {
   const { posts, isLoading } = useSelector((state) => state.posts);
   const styles = useStyles();
 
-  if (!posts.length && !isLoading) return <Alert severity="info" color="success">
-    So empty :/
-  </Alert>;
+  // if (!posts.length && !isLoading) return <Alert severity="info" color="success">
+  //   So empty :/
+  // </Alert>;
 
   return (
     isLoading ? <LinearProgress /> : (

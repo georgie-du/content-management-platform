@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 //define schema
-const postSchema = new mongoose.Schema(
+const blogSchema = new mongoose.Schema(
   {
     title: String,
     message: String,
@@ -23,6 +23,6 @@ const postSchema = new mongoose.Schema(
 );
 
 // compile model from schema
-const PostMessage = mongoose.model("PostMessage", postSchema);
+const BlogMessage = mongoose.model("BlogMessage", blogSchema);
 
-export default PostMessage;
+export default BlogMessage;

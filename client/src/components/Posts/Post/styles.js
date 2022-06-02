@@ -43,16 +43,11 @@ export default makeStyles({
     alignItems: 'center',
     color: 'gray',
   },
-  overlay2: {
+  overlay1: {
     cursor: 'pointer',
     position: 'relative',
     right: '5px',
     color: 'gray'
-  },
-  openBtn: {
-    // position: 'absolute',
-    // top: '15px',
-    // fontSize: '15px'
   },
   grid: {
     display: 'flex',

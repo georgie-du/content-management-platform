@@ -4,7 +4,6 @@ const authReducer = (state = { authData: null, isError: false, authFailure: '' }
   switch (action.type) {
     case AUTH:
       localStorage.setItem('profile', JSON.stringify({ ...action?.data }));
-      console.log(action?.data);
       return { ...state, authData: action?.data, isError: false };
     case AUTH_ERROR:
       return { ...state, authFailure: action.payload, isError: true }

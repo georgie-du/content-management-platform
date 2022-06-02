@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next';
 
-const initialState = {
+const initialStateFormFields = {
   firstName: '',
   lastName: '',
   email: '',
@@ -21,7 +21,7 @@ const initialState = {
 function Auth() {
   const [isRegister, setIsRegister] = useState(false);
   const [seePassword, setSeePassword] = useState(false);
-  const [formInfo, setFormInfo] = useState(initialState);
+  const [formInfo, setFormInfo] = useState(initialStateFormFields);
   const { authFailure, isError } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
@@ -48,9 +48,8 @@ function Auth() {
   const handleChange = (e) => { setFormInfo({ ...formInfo, [e.target.name]: e.target.value }) };
   const handleSeePassword = () => { setSeePassword((prev) => !prev) };
 
-
   const switchMode = () => {
-    setFormInfo(initialState);
+    setFormInfo(initialStateFormFields);
     setIsRegister((prevIsRegister) => !prevIsRegister);
     setSeePassword(false);
   };
@@ -109,7 +108,7 @@ function Auth() {
             </Grid>
             <Grid container style={{ justifyContent: 'flex-end' }} >
               <Grid item>
-                <Button onClick={switchMode}>{isRegister ? t("loginMessage" ) : t("registerMessage")}</Button>
+                <Button onClick={switchMode}>{isRegister ? t("loginMessage") : t("registerMessage")}</Button>
               </Grid>
             </Grid>
           </form>

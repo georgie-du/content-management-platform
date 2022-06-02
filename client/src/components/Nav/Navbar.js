@@ -52,7 +52,7 @@ function Navbar() {
         <Toolbar className={styles.toolbar}>
           {user ? (
             <div className={styles.profile}>
-              <Avatar className={styles.avatar} alt={user.result.name}>{user.result.name.charAt(0)}</Avatar>
+              <Avatar size='small' className={styles.avatar} src={user.result.imageUrl} alt={user.result.name}></Avatar>
               <Typography className={styles.userName} variant="h6" >{user.result.name}</Typography>
               <Button component={Link} to="/" variant="text" className={styles.navLinks}>{t('home')}</Button>
               <Button className={styles.logout} onClick={logout} >{t('logout')}</Button>
@@ -64,7 +64,6 @@ function Navbar() {
           ) : (
             <>
               <Button component={Link} to="/" variant="text" className={styles.navLinks}>{t('home')}</Button>
-
               <Button component={Link} to="/auth" variant="text" className={styles.navLinks}>{t('login')}</Button>
               <ButtonGroup aria-label="medium secondary button group">
                 <Button size='small' variant="outlined" onClick={changeLanguage} value='en'>EN</Button>

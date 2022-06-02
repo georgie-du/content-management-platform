@@ -42,11 +42,11 @@ function Post({ post, setCurrentId, openModal, setOpenModal }) {
         </Box>
 
         {(user?.result?.googleId === post?.author || user?.result?._id === post?.author) && (
-          <Box className={styles.overlay2} >
-            <Button size='small' startIcon={<BorderColorOutlinedIcon />} className={`${styles.editBtn} ${styles.overlay2}`} name="edit" onClick={handleUpdate}>
+          <Box className={styles.overlay1} >
+            <Button size='small' startIcon={<BorderColorOutlinedIcon />} className={`${styles.editBtn} ${styles.overlay1}`} name="edit" onClick={handleUpdate}>
               {/* <BorderColorOutlinedIcon fontSize="small"></BorderColorOutlinedIcon> */}
             </Button>
-            <Button size='small' className={`${styles.deleteBtn} ${styles.overlay2}`} onClick={() => { dispatch(deleteBlog(post._id)) }}>
+            <Button size='small' className={`${styles.deleteBtn} ${styles.overlay1}`} onClick={() => { dispatch(deleteBlog(post._id)) }}>
               <DeleteOutlineOutlinedIcon fontSize="small" />
             </Button>
 

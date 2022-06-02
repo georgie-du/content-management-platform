@@ -8,29 +8,29 @@ import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
 
 function Form({ currentId, setCurrentId, onClose }) {
-	const [postData, setPostData] = useState({
+	const navigate = useNavigate();
+	const styles = useStyles();
+	const dispatch = useDispatch();
+	const { t } = useTranslation();
+	const blog = useSelector((state) => currentId ? state.posts.posts.find((post) => post._id === currentId) : null);
+	const user = JSON.parse(localStorage.getItem('profile'));
+	
+	const [blogData, setBlogData] = useState({
 		title: '',
 		message: '',
 		tags: '',
 		fileSelected: ''
 	})
-	const navigate = useNavigate();
-	const styles = useStyles();
-	const dispatch = useDispatch();
-	const { t } = useTranslation();
-
-	const post = useSelector((state) => currentId ? state.posts.posts.find((post) => post._id === currentId) : null);
-	const user = JSON.parse(localStorage.getItem('profile'));
 
 	useEffect(() => {
-		if (post) setPostData(post);
-	}, [post, dispatch])
+		if (blog) setBlogData(blog);
+	}, [blog, dispatch])
 
-	const handleTextField = (e) => setPostData({ ...postData, [e.target.name]: e.target.value });
+	const handleTextField = (e) => setBlogData({ ...blogData, [e.target.name]: e.target.value });
 
 	const clearFields = () => {
 		setCurrentId(null);
-		setPostData({
+		setBlogData({
 			title: '',
 			message: '',
 			tags: '',
@@ -42,10 +42,11 @@ function Form({ currentId, setCurrentId, onClose }) {
 		e.preventDefault();
 
 		if (currentId) {
-			dispatch(updateBlog(currentId, { ...postData, name: user?.result?.name }, navigate))
+			dispatch(updateBlog(currentId, { ...blogData, name: user?.result?.name }, navigate))
 		}
 		else {
-			dispatch(createBlog({ ...postData, name: user?.result?.name }));
+			dispatch(createBlog({ ...blogData, name: user?.result?.name }));
+
 		}
 		clearFields();
 		onClose();
@@ -56,11 +57,11 @@ function Form({ currentId, setCurrentId, onClose }) {
 		<>
 			<form autoComplete='off' className={styles.form} onSubmit={handleSubmit} >
 				<Typography className={styles.createBlog} variant="h6" margin="normal" >{currentId ? `${t("edit")}` : `${t("create")} ${t("a_blog_post")}`} </Typography>
-				<TextField name="title" required margin="dense" label={t("title")} variant="standard" fullWidth value={postData.title} onChange={handleTextField} />
-				<TextField name="message" multiline margin="dense" rows='5' required label={t("message")} variant="standard" fullWidth value={postData.message} onChange={handleTextField} />
-				<TextField name="tags" required label={t("tags")} margin="dense" variant="standard" fullWidth value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })} />
+				<TextField name="title" required margin="dense" label={t("title")} variant="standard" fullWidth value={blogData.title} onChange={handleTextField} />
+				<TextField name="message" multiline margin="dense" rows='5' required label={t("message")} variant="standard" fullWidth value={blogData.message} onChange={handleTextField} />
+				<TextField name="tags" required label={t("tags")} margin="dense" variant="standard" fullWidth value={blogData.tags} onChange={(e) => setBlogData({ ...blogData, tags: e.target.value.split(',') })} />
 				<div className={styles.fileInput}>
-					<FileBase type="file" multiple={false} value={postData.fileSelected} onDone={({ base64 }) => setPostData({ ...postData, fileSelected: base64 })} />
+					<FileBase type="file" multiple={false} value={blogData.fileSelected} onDone={({ base64 }) => setBlogData({ ...blogData, fileSelected: base64 })} />
 				</div>
 				<ButtonGroup className={styles.buttonSubmit} aria-label="medium secondary button group">
 					<Button type="submit" >{t("submit")}</Button>

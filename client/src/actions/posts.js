@@ -8,7 +8,6 @@ export const getBlogs = (page) => async (dispatch) => {
     dispatch({ type: START_SPINNER });
     const { data } = await api.fetchPosts(page);
 
-    // console.log(data);
     dispatch({ type: FETCH_POSTS_BY_PAGE, payload: data });
     dispatch({ type: STOP_SPINNER });
   } catch (error) {
@@ -21,7 +20,6 @@ export const getBlog = (id) => async (dispatch) => {
     dispatch({ type: START_SPINNER });
     const { data } = await api.fetchPost(id);
 
-    console.log(data);
     dispatch({ type: FETCH_POST, payload: data });
     dispatch({ type: STOP_SPINNER });
   } catch (error) {
@@ -29,12 +27,11 @@ export const getBlog = (id) => async (dispatch) => {
   }
 };
 
-
 export const getBlogsBySearch = (params) => async (dispatch) => {
   try {
     dispatch({ type: START_SPINNER });
     const { data: { data } } = await api.fetchBlogsBySearch(params);
-    console.log('data received from server', data)
+
     dispatch({ type: FETCH__FROM_SEARCH, payload: data });
     dispatch({ type: STOP_SPINNER });
   } catch (error) {
