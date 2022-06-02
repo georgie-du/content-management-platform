@@ -29,11 +29,11 @@ function BlogDetails() {
     dispatch(getBlog(id));
   }, [dispatch, currentId, id])
 
-  // useEffect(() => {
-  //   if (post) {
-  //     dispatch(getBlogsBySearch({ search: 'none', tags: post?.tags.join(','), authorName: 'none' }))
-  //   }
-  // }, [post])
+  useEffect(() => {
+    if (post) {
+      dispatch(getBlogsBySearch({ search: 'none', tags: post?.tags.join(','), authorName: 'none' }))
+    }
+  }, [post])
 
   if (!post) return null;
 
@@ -45,12 +45,11 @@ function BlogDetails() {
     )
   }
   const recommendedBlogs = posts.filter(({ _id }) => _id !== post._id) // filter out the current post
-  const openBlog = (_id) => navigate(`/posts/${post._id}`);
+  const openBlog = (_id) => navigate(`/posts/${_id}`);
 
   const handleUpdate = (e) => {
     e.preventDefault();
     setCurrentId(post._id);
-    console.log(post._id)
     setOpenModal(true)
   };
 

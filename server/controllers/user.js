@@ -15,7 +15,7 @@ export const login = async (req, res) => {
 
     if (!isPasswordMatching) return res.status(400).json({ message: "Invalid password" });
 
-    const token = jwt.sign({ email: currentUser.email, id: currentUser._id }, secret, { expiresIn: "1h" });
+    const token = jwt.sign({ email: currentUser.email, id: currentUser._id }, secret, { expiresIn: "2h" });
 
     res.status(200).json({ result: currentUser, token });
 

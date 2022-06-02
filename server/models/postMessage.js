@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 
-const Schema = mongoose.Schema;
 //define schema
-const postSchema = new Schema(
+const postSchema = new mongoose.Schema(
   {
     title: String,
     message: String,
@@ -13,7 +12,7 @@ const postSchema = new Schema(
     likes: {
       type: [String],
       default: [],
-    }, 
+    },
     comments: { type: [String], default: [] },
     createdAt: {
       type: Date,

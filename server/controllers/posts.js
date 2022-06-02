@@ -35,8 +35,7 @@ export async function getBlogsBySearch(req, res) {
   const { searchTerm, tags, authorName } = req.query;
   try {
     const title = new RegExp(searchTerm, 'i'); // ignore case 
-    const name = new RegExp(authorName, 'i'); // ignore case
-    console.log('radone', name)
+    const name = new RegExp(authorName, 'i'); 
     const posts = await PostMessage.find({ $or: [{ title }, { tags: { $in: tags.split(',') } }, { name }] });
     console.log('posts searched from backend', posts)
     res.status(201).json({ data: posts });

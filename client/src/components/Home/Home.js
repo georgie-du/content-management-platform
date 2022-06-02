@@ -35,7 +35,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(getBlogs());
-  }, [currentId, dispatch])
+  }, [ dispatch])
 
 
   let params = {};

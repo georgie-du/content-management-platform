@@ -8,7 +8,7 @@ export default makeStyles({
     backgroundColor: 'rgba(0, 0, 0, 0.4)',
     backgroundBlendMode: 'darken',
     borderRadius: '15px',
-    objectFit:'contain'
+    objectFit: 'contain'
   },
   border: {
     border: 'solid',
@@ -41,8 +41,6 @@ export default makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    // top: '10px',
-    // left: '20px',
     color: 'gray',
   },
   overlay2: {
@@ -55,15 +53,6 @@ export default makeStyles({
     // position: 'absolute',
     // top: '15px',
     // fontSize: '15px'
-  },
-  editBtn: {
-    // position: 'absolute',
-    // top: '70px'
-  },
-  deleteBtn: {
-    // position: 'absolute',
-    // top: '120px',
-
   },
   grid: {
     display: 'flex',
